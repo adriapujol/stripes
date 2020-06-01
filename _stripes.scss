@@ -1,3 +1,5 @@
+@import "./animations";
+
 @mixin centerItems {
     display: flex;
     justify-content: center;
@@ -15,6 +17,23 @@
     left: 0;
     transform: skew(30deg);
     transition: all .2s ease-in-out;
+}
+
+@mixin animationStart($name, $duration) {
+    animation-name: $name;
+    animation-duration: $duration;
+    animation-timing-function: ease-in-out;
+}
+
+@mixin whiteStripFull {
+    .strip {
+        &:before {
+            @include whiteStrip();
+        }
+        &:hover:before {
+            transform: skew(0);
+        }
+    }
 }
 
 .container {
@@ -42,119 +61,36 @@
         }    
         &:nth-child(1) {
             background-color: #244F75;
-            animation-name: leftRight;
-            animation-duration: 0.4s;
-            animation-timing-function: ease-in-out;
-            .strip {
-                &:before {
-                    @include whiteStrip();
-                }
-                &:hover:before {
-                    transform: skew(0);
-                }
-            }
+            @include animationStart(leftRight, 0.4s);
+            @include whiteStripFull();
+
         }
         &:nth-child(2) {
             background-color: #60BFBF;
-            animation-name: downUp;
-            animation-duration: 0.7s;
-            animation-timing-function: ease-in-out;
-            .strip {
-                &:before {
-                    @include whiteStrip();
-                }
-                &:hover:before {
-                    transform: skew(0);
-                }
-            }
+            @include animationStart(downUp, 0.7s);
+            @include whiteStripFull();
+
         }
         &:nth-child(3) {
             background-color: #8C4B7E;
-            animation-name: upDown;
-            animation-duration: 0.7s;
-            animation-timing-function: ease-in-out;
-            .strip {
-                &:before {
-                    @include whiteStrip();
-                }
-                &:hover:before {
-                    transform: skew(0);                }
-            }
+            @include animationStart(upDown, 0.7s);
+            @include whiteStripFull();
+
         }
         &:nth-child(4) {
             background-color: #F8BB44;
-            animation-name: downUp;
-            animation-duration: 0.8s;
-            animation-timing-function: ease-in-out;
-            .strip {
-                &:before {
-                    @include whiteStrip();
-                }
-                &:hover:before {
-                    transform: skew(0);                }
-            }
+            @include animationStart(downUp, 0.8s);
+            @include whiteStripFull();
+
         }
         &:nth-child(5) {
             background-color: #F24B4B;
-            animation-name: rightLeft;
-            animation-duration: 0.8s;
-            animation-timing-function: ease-in-out;
-            .strip {
-                &:before {
-                    @include whiteStrip();
-                }
-                &:hover:before {
-                    transform: skew(0);                }
-            }
+            @include animationStart(rightLeft, 0.8s);
+            @include whiteStripFull();
+
         }
 
     }
-
-@keyframes leftRight {
-    0% {
-        -webkit-transform: translate3d(-100%, 0, 0);
-        transform: translate3d(-100%, 0, 0);
-    }
-    100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes downUp {
-    0% {
-        -webkit-transform: translate3d(0, 100%, 0);
-        transform: translate3d(0, 100%, 0);
-    }
-    100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes upDown {
-    0% {
-        -webkit-transform: translate3d(0, -100%, 0);
-        transform: translate3d(0, -100%, 0);
-    }
-    100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-@keyframes rightLeft {
-    0% {
-        -webkit-transform: translate3d(100%, 0, 0);
-        transform: translate3d(100%, 0, 0);
-    }
-    100% {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-    }
-}
-
-
 
 }
 
